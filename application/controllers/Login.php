@@ -30,6 +30,8 @@ class Login extends CI_Controller {
             $clave= md5($this->input->post('clave'));
             $res= $this->usuarios_model->login(array('nick' => $nick, 'clave' => $clave));
             if ($res !== false){
+                $_SESSION['usuario_id']= $res['usuario_id'];
+                $_SESSION['nick']= $nick;
                 redirect('home');
                 return;                
             } else {
@@ -39,6 +41,11 @@ class Login extends CI_Controller {
             $this->datos['errors']= validation_errors();            
         }
         $this->mostrar();        
+    }
+
+    public function cerrar_sesion(){
+        session_destroy();
+        redirect('login');
     }
 
 	private function mostrar($vista= "login"){

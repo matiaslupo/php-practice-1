@@ -17,7 +17,7 @@
       </li>
     </ul>
     <div class="my-2 my-lg-0">
-      <a class="btn btn-outline-danger my-2 my-sm-0" ><i class="bi bi-box-arrow-left"></i></a>
+      <a class="btn btn-outline-danger my-2 my-sm-0" href="<?php echo site_url('login/cerrar_sesion') ?>"><i class="bi bi-box-arrow-left"></i></a>
     </div>    
   </div>
 </nav>
