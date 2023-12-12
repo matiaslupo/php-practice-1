@@ -14,7 +14,8 @@ class Home extends CI_Controller {
 		$this->validar_sesion();
 		$this->id= $_SESSION['usuario_id'];
 		$this->datos['titulo']= 'Practica PHP: Lista de tareas';
-		$this->load->model('pendientes');
+		$this->datos['nick']= $_SESSION['nick'];
+		$this->load->model('pendientes_model');
 	}
 
 	public function index()
@@ -23,6 +24,12 @@ class Home extends CI_Controller {
 	}
 
     public function main(){		
+		$pendientes= $this->pendientes_model->listar_tareas($this->id);
+		if (count($pendientes)){
+			$datos['pendientes']= $pendientes;
+		} else {
+			$datos['info']= "No hay tareas pendientes";
+		}
         $this->mostrar();
     }
 
