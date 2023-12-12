@@ -16,8 +16,20 @@ class Login extends CI_Controller {
 		redirect('login/main');
 	}
 
-    public function main(){
+    public function main(){       
         $this->mostrar();
+    }
+
+    public function login(){        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nick', 'Nombre de usuario', 'required|trim');
+        $this->form_validation->set_rules('clave', 'Clave', 'required'); 
+        if ($this->form_validation->run()){
+            redirect('home');
+            return;
+        }
+        $this->datos['errors']= true;
+        $this->mostrar();        
     }
 
 	private function mostrar($vista= "login"){
