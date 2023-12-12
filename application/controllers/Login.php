@@ -9,6 +9,7 @@ class Login extends CI_Controller {
     public function __construct(){
         parent::__construct();
 		$this->datos['titulo']= 'Bienvenido';
+        $this->load->model('usuarios_model');
 	}
 
 	public function index()
@@ -25,10 +26,18 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('nick', 'Nombre de usuario', 'required|trim');
         $this->form_validation->set_rules('clave', 'Clave', 'required'); 
         if ($this->form_validation->run()){
-            redirect('home');
-            return;
+            $nick= $this->input->post('nick');
+            $clave= md5($this->input->post('clave'));
+            $res= $this->usuarios_model->login(array('nick' => $nick, 'clave' => $clave));
+            if ($res !== false){
+                redirect('home');
+                return;                
+            } else {
+                $this->datos['errors']= 'Credenciales invalidas, intente de nuevo.';
+            }
+        } else {
+            $this->datos['errors']= validation_errors();            
         }
-        $this->datos['errors']= true;
         $this->mostrar();        
     }
 
