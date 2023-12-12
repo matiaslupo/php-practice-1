@@ -1,12 +1,13 @@
 <div class="container">
+    <div class="row py-5"></div>
     <div class="row py-5">
-        <div class="col-5 offset-4">
+        <div class="col-4 offset-4">
             <div class="card py-2">
                 <h5 class="card-title text-center">Login</h5>
                 <div class="card-body">
                     <?php if (isset($errors)) {?>
                         <div class="alert alert-danger">
-                            <?php echo validation_errors(); ?>
+                            <?php echo $errors; ?>
                         </div>
                     <?php } ?>
                     <form method="post" action="<?php echo site_url('login/login'); ?>">
