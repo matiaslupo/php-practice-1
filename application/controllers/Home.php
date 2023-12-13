@@ -48,9 +48,7 @@ class Home extends CI_Controller {
 		} else {
 			$this->datos['error']= validation_errors();
 		}
-		redirect('home');
-		// $this->test($this->datos);
-		// $this->output->enable_profiler(true);
+		$this->main();
 	}
 
 	private function test($data = array()){
