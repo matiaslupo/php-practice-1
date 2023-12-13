@@ -33,6 +33,16 @@ class Home extends CI_Controller {
         $this->mostrar();
     }
 
+	public function completadas(){
+		$completadas= $this->pendientes_model->listar_tareas($this->id, TAREA_COMPLETADA);
+		if (count($completadas)){
+			$this->datos['completadas']= $completadas;
+		} else {
+			$this->datos['info']= "No hay tareas completadas";
+		}
+        $this->mostrar('completadas');
+	}
+
 	public function crear_tarea(){
 		$this->validar_sesion();
 		$this->load->library('form_validation');
@@ -43,12 +53,30 @@ class Home extends CI_Controller {
 				"usuario_id" => $this->id
 			);
 			if ($this->pendientes_model->nueva($datos) === false){
-				$this->datos['error']= "Ha ocurrido un error al guardar la tarea";
+				$_SESSION['error']= "Ha ocurrido un error al guardar la tarea";
 			}			
 		} else {
-			$this->datos['error']= validation_errors();
+			$_SESSION['error']= validation_errors();
 		}
-		$this->main();
+		redirect('home');
+	}
+
+	public function completada(){
+		$id= $this->input->get('id');
+		$this->pendientes_model->completar($id);
+		redirect('home');
+	}
+
+	public function pendiente(){
+		$id= $this->input->get('id');
+		$this->pendientes_model->pendiente($id);
+		redirect('home/completadas');
+	}
+
+	public function borrar(){
+		$id= $this->input->get('id');
+		$this->pendientes_model->borrar($id);
+		redirect('home/completadas');
 	}
 
 	private function test($data = array()){
