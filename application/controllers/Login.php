@@ -18,7 +18,10 @@ class Login extends CI_Controller {
 	}
 
     public function main(){       
-        $this->mostrar();
+        if (isset($_SESSION['usuario_id']))
+            redirect('home');
+        else
+            $this->mostrar();
     }
 
     public function login(){        
