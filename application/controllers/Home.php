@@ -26,12 +26,18 @@ class Home extends CI_Controller {
     public function main(){		
 		$pendientes= $this->pendientes_model->listar_tareas($this->id);
 		if (count($pendientes)){
-			$datos['pendientes']= $pendientes;
+			$this->datos['pendientes']= $pendientes;
 		} else {
-			$datos['info']= "No hay tareas pendientes";
+			$this->datos['info']= "No hay tareas pendientes";
 		}
         $this->mostrar();
     }
+
+	private function test(){
+		echo "<pre>";
+		print_r($this->datos);
+		echo "</pre>";
+	}
 
 	private function validar_sesion(){
 		if (isset($_SESSION['usuario_id']) == false){
