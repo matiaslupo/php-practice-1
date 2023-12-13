@@ -12,6 +12,13 @@ class pendientes_model extends CI_Model {
         return $res->result_array();
     }
 
+    public function nueva($datos= array()){
+        $this->db->insert($this->tabla, $datos);
+        if ($res= $this->db->insert_id())
+            return $res;
+        return false;
+    }
+
 }
 
 ?>
