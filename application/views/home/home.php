@@ -2,7 +2,8 @@
     <div class="row py-5">
         <div class="col-8 offset-2">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body">                    
+                    <h5 class="card-title">Nueva tarea</h5>
                     <form class="form-inline">
                         <label class="sr-only" for="inlineFormInputName2">Tarea</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" name="tarea">
@@ -16,8 +17,8 @@
     <div class="row">
         <div class="col-8 offset-2">
             <div class="card">
-                <h5 class="card-title py-3 text-center">Lista de tareas de <?php echo $nick; ?></h5>
-                <div class="card-body">
+                <div class="card-body">                    
+                    <h5 class="card-title py-1 text-center">Lista de tareas de <?php echo $nick; ?></h5>
                     <?php if (isset($info)) { ?>
                         <div class="alert alert-info">
                             No hay tareas pendientes.
