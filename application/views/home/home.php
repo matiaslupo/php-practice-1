@@ -27,11 +27,11 @@
                         <?php if (isset($pendientes)) { 
                                 foreach ($pendientes as $p) {
                         ?>
-                        <li class="list-item">
+                        <li class="list-group-item">
                             <span class="mr-2"><?php echo $p['texto']; ?></span>
                             <span class="mr-2"><?php echo $p['fecha']; ?></span>
                             <span class="float-right">
-                                <a href="#" class="btn btn-dark mr-2"><i class="bi bi-eye-slash"></i></a>
+                                <a href="#" class="btn btn-dark btn-sm mr-2"><i class="bi bi-eye-slash"></i></a>
                             </span>
                         </li>
                         <?php   }
