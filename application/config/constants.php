@@ -86,3 +86,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 //My constants
 defined('TAREA_PENDIENTE')      OR define('TAREA_PENDIENTE', 0);
+defined('TAREA_COMPLETADA')      OR define('TAREA_COMPLETADA', 1);
