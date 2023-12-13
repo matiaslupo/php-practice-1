@@ -33,9 +33,29 @@ class Home extends CI_Controller {
         $this->mostrar();
     }
 
-	private function test(){
+	public function crear_tarea(){
+		$this->validar_sesion();
+		$this->load->library('form_validation');
+        $this->form_validation->set_rules('texto', 'Tarea', 'required|trim');
+		if ($this->form_validation->run()){
+			$datos= array(
+				"texto" => $this->input->post("texto"),
+				"usuario_id" => $this->id
+			);
+			if ($this->pendientes_model->nueva($datos) === false){
+				$this->datos['error']= "Ha ocurrido un error al guardar la tarea";
+			}			
+		} else {
+			$this->datos['error']= validation_errors();
+		}
+		redirect('home');
+		// $this->test($this->datos);
+		// $this->output->enable_profiler(true);
+	}
+
+	private function test($data = array()){
 		echo "<pre>";
-		print_r($this->datos);
+		print_r($data);
 		echo "</pre>";
 	}
 

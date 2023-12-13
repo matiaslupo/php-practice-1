@@ -4,12 +4,16 @@
             <div class="card">
                 <div class="card-body">                    
                     <h5 class="card-title">Nueva tarea</h5>
-                    <form class="form-inline">
+                    <form class="form-inline" method="post" action="<?php echo site_url('home/crear_tarea') ?>">
                         <label class="sr-only" for="inlineFormInputName2">Tarea</label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" name="tarea">
-
-                        <button type="submit" class="btn btn-primary mb-2">Enviar</button>
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="texto">
+                        <button type="submit" class="btn btn-primary mb-2"><i class="bi bi-plus-square-fill"></i></button>
                     </form>
+                    <?php if (isset($error)) { ?>
+                        <div class="alert alert-danger">
+                            <?php echo $error; ?>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
